@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Joshua Nochina | Software Professional</title>
+  <style>
+    /* Reset & base */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #eee;
+      min-height: 100vh;
+      scroll-behavior: smooth;
+    }
+    a {
+      color: #0ff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #0fa;
+    }
+    /* Container */
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+    /* Header / Navigation */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: linear-gradient(90deg, #142d4ccc, #204060cc);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem 0;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    nav a {
+      padding: 0.25rem 0.5rem;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    nav a:hover {
+      background-color: #0fa;
+      color: #022;
+    }
+    /* Sections */
+    section {
+      padding: 100px 0 60px 0;
+      scroll-margin-top: 80px;
+    }
+    /* Hero / Homepage */
+    #home {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      gap: 1rem;
+    }
+    #home h1 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      color: #0ff;
+      text-shadow: 0 0 15px #0ff;
+    }
+    #home h2 {
+      font-weight: 600;
+      font-size: 1.5rem;
+      color: #7fffd4;
+      text-shadow: 0 0 10px #7fffd4;
+    }
+    #home p {
+      max-width: 600px;
+      font-size: 1.25rem;
+      color: #c0f7f7;
+      margin-bottom: 2rem;
+    }
+    /* CTA Buttons */
+    .cta-container {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .cta {
+      background: #0fa;
+      color: #022;
+      font-weight: 700;
+      padding: 0.75rem 2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      box-shadow: 0 0 12px #0fa;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      border: none;
+      user-select: none;
+    }
+    .cta:hover {
+      background-color: #07c;
+      color: #eef;
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #07c;
+    }
+    /* About Me */
+    #about p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #d0f0f0;
+      margin-bottom: 1rem;
+    }
+    #about strong {
+      color: #0ff;
+    }
+    /* Portfolio */
+    #portfolio {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .project-card {
+      background: #142d4cdd;
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #0fa;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 20px #0ff;
+    }
+    .project-title {
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: #7fffd4;
+    }
+    .project-desc {
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      color: #c0f7f7;
+    }
+    .project-tech {
+      font-style: italic;
+      font-size: 0.9rem;
+      color: #0ff;
+    }
+    /* Skills */
+    #skills {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: 700px;
+      margin: auto;
+    }
+    .skill-category {
+      color: #7fffd4;
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 2px solid #0fa;
+      padding-bottom: 0.2rem;
+    }
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .skill-item {
+      background: #204060cc;
+      padding: 0.6rem 1rem;
+      border-radius: 20px;
+      font-weight: 600;
+      color: #a0f0f0;
+      position: relative;
+      cursor: default;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    .skill-item:hover {
+      background-color: #0fa;
+      color: #022;
+    }
+    /* Contact */
+    #contact {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #d0f0f0;
+    }
+    #contact a {
+      margin: 0 1rem;
+      font-weight: 700;
+      color: #0ff;
+      text-decoration: underline;
+      transition: color 0.3s ease;
+    }
+    #contact a:hover {
+      color: #7fffd4;
+    }
+    /* Responsive */
+    @media (max-width: 600px) {
+      #home h1 {
+        font-size: 2.8rem;
+      }
+      #home h2 {
+        font-size: 1.2rem;
+      }
+      #home p {
+        font-size: 1rem;
+      }
+      nav {
+        gap: 1rem;
+      }
+      .cta-container {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About Me</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <section id="home">
+      <h1>Joshua N</h1>
+      <h2>Software Professional</h2>
+      <p>I’m an Automation Test Engineer with a curious enthusiasm for uncovering bugs and improving software quality. I’m goal-driven and dedicated to delivering reliable, high-performing applications.</p>
+      <div class="cta-container">
+        <button class="cta" onclick="scrollToSection('portfolio')">View My Work</button>
+        <button class="cta" onclick="alert('Resume download not enabled yet.')">Download Resume</button>
+        <button class="cta" onclick="scrollToSection('contact')">Contact Me</button>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2 class="skill-category">About Me</h2>
+      <p>I am a QA Automation Tester with professional experience working across diverse domains including retail, banking, and e-commerce. Over the years, I have developed strong expertise in designing and executing automated test scripts to ensure high-quality software delivery.</p>
+      <p>My career journey has equipped me with a deep understanding of different industry standards and challenges, allowing me to adapt quickly and contribute effectively to cross-functional teams. I am passionate about improving software reliability and enhancing user experience through meticulous testing.</p>
+      <h3 class="skill-category">Core Strengths & Skills</h3>
+      <ul>
+        <li>Expertise in Selenium and Java for automation testing</li>
+        <li>Proficient with Postman for API testing</li>
+        <li>Strong attention to detail and problem-solving abilities</li>
+        <li>Experience with Jenkins for CI/CD pipelines</li>
+        <li>Familiarity with Bugzilla and Mira for bug tracking</li>
+        <li>Agile methodology practitioner and team collaborator</li>
+      </ul>
+    </section>
+
+    <section id="portfolio">
+      <h2 class="skill-category">Portfolio / Projects</h2>
+      <div class="project-card">
+        <div class="project-title">Automated Regression Testing for Retail Banking Application</div>
+        <div class="project-desc">Developed and maintained automated test scripts to validate core banking functionalities, including account management and transaction processing. Ensured high test coverage and reduced manual testing effort by 70%.</div>
+        <div class="project-tech"><strong>Technologies:</strong> Selenium WebDriver, Java, Jenkins, TestNG</div>
+      </div>
+      <div class="project-card">
+        <div class="project-title">E-commerce Platform Functional Testing Automation</div>
+        <div class="project-desc">Created and executed automation suites for an e-commerce website, focusing on checkout flows, user authentication, and payment gateway integration. Improved defect detection speed and accuracy.</div>
+        <div class="project-tech"><strong>Technologies:</strong> Selenium, Java, Postman, Bugzilla</div>
+      </div>
+      <div class="project-card">
+        <div class="project-title">Continuous Integration Setup for Automation Pipeline</div>
+        <div class="project-desc">Integrated automated tests with Jenkins CI/CD pipelines to enable continuous testing and faster release cycles. Collaborated with DevOps to streamline build and deployment processes.</div>
+        <div class="project-tech"><strong>Technologies:</strong> Jenkins, Maven, Git</div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2 class="skill-category">Skills</h2>
+      <div>
+        <h3>Technical Skills</h3>
+        <div class="skill-list">
+          <div class="skill-item">Selenium</div>
+          <div class="skill-item">Java</div>
+          <div class="skill-item">Postman</div>
+          <div class="skill-item">Jenkins</div>
+          <div class="skill-item">Bugzilla</div>
+          <div class="skill-item">Mira</div>
+        </div>
+      </div>
+      <div>
+        <h3>Soft Skills</h3>
+        <div class="skill-list">
+          <div class="skill-item">Attention to Detail</div>
+          <div class="skill-item">Problem Solving</div>
+          <div class="skill-item">Goal-Driven Mindset</div>
+        </div>
+      </div>
+      <div>
+        <h3>Methodologies</h3>
+        <div class="skill-list">
+          <div class="skill-item">Agile</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="skill-category">Contact</h2>
+      <p>Email: <a href="mailto:Joshua.nchinana@gmail.com">Joshua.nchinana@gmail.com</a></p>
+      <p>GitHub: <a href="https://github.com/joshuanoc" target="_blank" rel="noopener noreferrer">github.com/joshuanoc</a></p>
+    </section>
+
+  </main>
+
+  <script>
+    // Smooth scroll helper
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
