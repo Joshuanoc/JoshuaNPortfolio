@@ -1,6 +1,6 @@
 import React,{useState}from'react';
-import{motion}from'framer-motion';
-import{ArrowUpRight,Check,ChevronRight,Mail,Code2,Cloud,TestTube2,Wrench,Database,Network}from'lucide-react';
+import{motion,useReducedMotion}from'framer-motion';
+import{ArrowUpRight,Check,ChevronRight,Mail,Code2,Cloud,TestTube2,Wrench,Database,Network,Menu,X}from'lucide-react';
 
 const projects=[
 {eyebrow:'AUTOMATION FRAMEWORK',title:'E-Commerce QA Automation',text:'A reusable UI automation framework covering end-to-end shopping journeys with Page Object Model, Cucumber BDD, Maven and Jenkins.',chips:['Selenium','Java','Cucumber','Jenkins'],metric:'Reusable test architecture'},
@@ -18,20 +18,20 @@ const skillGroups=[
 ];
 
 function App(){
-const[open,setOpen]=useState(0);
+const[open,setOpen]=useState(0);const[menuOpen,setMenuOpen]=useState(false);const reduceMotion=useReducedMotion();const year=new Date().getFullYear();const closeMenu=()=>setMenuOpen(false);
 return <div className="site">
-<header className="nav"><a href="#home" className="logo">JOSHUA DANIEL</a><nav><a href="#about">About</a><a href="#projects">Work</a><a href="#skills">Skills</a><a href="#contact">Contact</a></nav><a className="navCta" href="mailto:Joshuadaniel944@gmail.com">Let's talk <ArrowUpRight size={15}/></a></header>
+<header className="nav"><a href="#home" className="logo" onClick={closeMenu}>JOSHUA DANIEL</a><nav aria-label="Primary navigation"><a href="#about">About</a><a href="#projects">Work</a><a href="#skills">Skills</a><a href="#contact">Contact</a></nav><div className="navActions"><a className="navCta" href="mailto:Joshuadaniel944@gmail.com">Let's talk <ArrowUpRight size={15}/></a><button className="menuButton" type="button" aria-label={menuOpen?'Close navigation menu':'Open navigation menu'} aria-expanded={menuOpen} aria-controls="mobile-menu" onClick={()=>setMenuOpen(v=>!v)}>{menuOpen?<X size={20}/>:<Menu size={20}/>}</button></div>{menuOpen&&<nav id="mobile-menu" className="mobileMenu" aria-label="Mobile navigation"><a href="#about" onClick={closeMenu}>About</a><a href="#projects" onClick={closeMenu}>Work</a><a href="#skills" onClick={closeMenu}>Skills</a><a href="#contact" onClick={closeMenu}>Contact</a></nav>}</header>
 
 <main>
 <section id="home" className="hero">
 <div className="heroGlow one"/><div className="heroGlow two"/>
-<motion.div className="heroCopy" initial={{opacity:0,y:28}} animate={{opacity:1,y:0}} transition={{duration:.7}}>
+<motion.div className="heroCopy" initial={reduceMotion?false:{opacity:0,y:28}} animate={{opacity:1,y:0}} transition={{duration:reduceMotion?0:.7}}>
 <p className="tag">QA AUTOMATION · IT SUPPORT · ANALYSIS</p>
 <h1>Building quality<br/>into every <span>experience.</span></h1>
 <p className="heroText">I'm Joshua Daniel, a technology professional focused on software quality, automation, support and reliable user experiences.</p>
 <div className="heroActions"><a className="btn dark" href="#projects">View my work <ChevronRight size={16}/></a><a className="btn light" href="mailto:Joshuadaniel944@gmail.com">Contact me</a></div>
 </motion.div>
-<motion.div className="heroVisual" initial={{opacity:0,scale:.95}} animate={{opacity:1,scale:1}} transition={{delay:.18,duration:.7}}>
+<motion.div className="heroVisual" initial={reduceMotion?false:{opacity:0,scale:.95}} animate={{opacity:1,scale:1}} transition={{delay:reduceMotion?0:.18,duration:reduceMotion?0:.7}}>
 <div className="visualCard mainCard"><div className="miniLabel">CURRENT FOCUS</div><h3>Quality Engineering</h3><p>Automation · APIs · CI/CD · Support</p><div className="statRow"><div><strong>QA</strong><span>Automation</span></div><div><strong>API</strong><span>Testing</span></div><div><strong>IT</strong><span>Support</span></div></div></div>
 <div className="floatCard topCard"><Check size={17}/><span>Reliable systems</span></div>
 <div className="floatCard bottomCard"><span className="dot"/> Open to opportunities</div>
@@ -48,8 +48,8 @@ return <div className="site">
 <section id="projects" className="section work">
 <div className="sectionHead"><div><p className="sectionTag">SELECTED WORK</p><h2>Projects built around real testing problems.</h2></div><p>Focused case studies that show how I think about coverage, risk and quality.</p></div>
 <div className="projectGrid">
-<div className="projectMenu">{projects.map((p,i)=><button key={p.title} className={open===i?'projectTab active':''} onClick={()=>setOpen(i)}><span>0{i+1}</span><div><small>{p.eyebrow}</small><strong>{p.title}</strong></div><ChevronRight size={18}/></button>)}</div>
-<motion.article key={open} className="projectPanel" initial={{opacity:0,y:10}} animate={{opacity:1,y:0}}>
+<div className="projectMenu">{projects.map((p,i)=><button key={p.title} className={open===i?'projectTab active':''} onClick={()=>setOpen(i)} aria-pressed={open===i}><span>0{i+1}</span><div><small>{p.eyebrow}</small><strong>{p.title}</strong></div><ChevronRight size={18}/></button>)}</div>
+<motion.article key={open} className="projectPanel" initial={reduceMotion?false:{opacity:0,y:10}} animate={{opacity:1,y:0}} transition={{duration:reduceMotion?0:.25}}>
 <div className="projectNumber">0{open+1}</div><p className="sectionTag">{projects[open].eyebrow}</p><h3>{projects[open].title}</h3><p>{projects[open].text}</p><div className="chips">{projects[open].chips.map(x=><span key={x}>{x}</span>)}</div><div className="projectMetric"><Check size={16}/>{projects[open].metric}</div>
 </motion.article>
 </div>
@@ -76,7 +76,7 @@ return <div className="site">
 </section>
 </main>
 
-<footer><strong>Joshua Daniel</strong><span>QA Automation · IT Support · Technology</span><span>© 2026</span></footer>
+<footer><strong>Joshua Daniel</strong><span>QA Automation · IT Support · Technology</span><span>© {year}</span></footer>
 </div>
 }
 export default App;
