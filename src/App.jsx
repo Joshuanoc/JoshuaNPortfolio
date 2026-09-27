@@ -1,15 +1,82 @@
-import React,{useState}from'react';import{motion}from'framer-motion';import{Mail,Play,CheckCircle2,Terminal,Code2,ChevronRight}from'lucide-react';
-const skills={Automation:['Selenium WebDriver','TestNG','JUnit','Cucumber BDD','Page Object Model','Maven','Jenkins'],API:['Postman','Swagger','REST APIs','Positive / Negative Testing','Response Validation'],Programming:['Java','Python','JavaScript','HTML','CSS','Shell Script'],Support:['ServiceNow','Zendesk','Jira','Windows','Linux','macOS','Active Directory'],Cloud:['AWS','Azure','Git','Jenkins','Maven'],Networking:['TCP/IP','DNS','DHCP','VPN','Subnetting']};
-const projects=[{n:'01',type:'AUTOMATION',title:'E-Commerce Test Framework',text:'Scalable end-to-end automation with reusable page objects, BDD scenarios and CI execution.',tags:['Selenium','Java','Cucumber'],flow:'Feature Files → Step Definitions → Page Objects → WebDriver → Browser → Reports'},{n:'02',type:'FUNCTIONAL QA',title:'Insurance Policy Management',text:'Coverage across registration, quotes, policy issuance, premiums, claims and settlement workflows.',tags:['Jira','Regression','Test Design'],flow:'Requirements → Scenarios → Execution → Defects → Retest → Regression'},{n:'03',type:'EXPLORATORY QA',title:'Crypto Trading Platform',text:'Functional and exploratory testing across authentication, wallets, trading and transaction flows.',tags:['UI Testing','Negative Tests','Jira'],flow:'User Journey → Risk Areas → Test Cases → Execution → Defects → Regression'}];
-function App(){const[active,setActive]=useState('Automation'),[project,setProject]=useState(null),[running,setRunning]=useState(false),[results,setResults]=useState([]),[recruiter,setRecruiter]=useState(false);
-const run=()=>{if(running)return;setRunning(true);setResults([]);let i=0;const rows=['Login authentication','Product search','Add to cart','Checkout validation','API response','Error handling'];const t=setInterval(()=>{setResults(r=>[...r,rows[i]]);i++;if(i===rows.length){clearInterval(t);setRunning(false)}},320)};
-return <div className={recruiter?'app recruiter':'app'}>
-<header><a className="brand" href="#home">&lt;JD<span>/</span>QA&gt;</a><nav><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#lab">QA Lab</a><a href="#contact">Contact</a></nav><label className="switch"><input type="checkbox" checked={recruiter} onChange={e=>setRecruiter(e.target.checked)}/><span>Recruiter Mode</span></label></header>
-<main><section id="home" className="hero"><motion.div initial={{opacity:0,y:24}} animate={{opacity:1,y:0}} transition={{duration:.6}}><p className="eyebrow"><i/> AVAILABLE FOR QA / IT OPPORTUNITIES</p><h1>Quality engineering<br/>with a <em>problem-solving</em><br/>mindset.</h1><p className="lead">I'm <b>Joshua Daniel</b> — a QA and technology professional working across automation, API testing, IT support, cloud and business analysis.</p><div className="actions"><a className="primary" href="#projects">Explore Projects <ChevronRight size={17}/></a><a className="secondary" href="#lab"><Play size={15}/> Run My Tests</a></div><div className="metrics"><div><strong>QA</strong><small>Automation</small></div><div><strong>API</strong><small>Testing</small></div><div><strong>IT</strong><small>Support</small></div><div><strong>Cloud</strong><small>AWS / Azure</small></div></div></motion.div><motion.div className="console" initial={{opacity:0,scale:.97}} animate={{opacity:1,scale:1}} transition={{delay:.2}}><div className="consoleTop"><span>● ● ●</span><small>joshua@portfolio ~ %</small></div><div className="consoleBody"><p className="dim">$ whoami</p><p>Joshua Daniel</p><p className="dim">$ role --current</p><p>QA Automation / IT Analyst</p><p className="dim">$ stack --top</p><p>Selenium · Java · Python · Postman</p><p>TestNG · Cucumber · Jenkins · AWS</p><p className="dim">$ status</p><p className="green">✓ Ready to build, test & improve</p><span className="cursor">▋</span></div></motion.div></section>
-<section id="about" className="section"><div className="kicker">01 / ABOUT</div><div className="two"><h2>I care about what happens <em>before</em> users find the bug.</h2><div><p>Detail-oriented technology professional combining quality assurance, operational support and business analysis to improve reliability and customer experience.</p><p>My approach connects technical testing with business context: understand the workflow, identify risk, validate behavior and communicate issues clearly.</p></div></div></section>
-<section id="skills" className="section"><div className="kicker">02 / TOOLKIT</div><div className="titleRow"><h2>Technical stack</h2><p>Explore the tools behind my work.</p></div><div className="tabs">{Object.keys(skills).map(x=><button className={active===x?'active':''} onClick={()=>setActive(x)} key={x}>{x}</button>)}</div><motion.div className="skillBox" key={active} initial={{opacity:0,y:8}} animate={{opacity:1,y:0}}><div><Code2/><h3>{active}</h3><p>Hands-on tools and concepts used across testing, troubleshooting and delivery.</p></div><div className="pills">{skills[active].map(x=><span key={x}>{x}</span>)}</div></motion.div></section>
-<section id="projects" className="section"><div className="kicker">03 / SELECTED WORK</div><div className="titleRow"><h2>Projects that prove the skills</h2><p>Click a project to inspect the testing approach.</p></div><div className="cards">{projects.map((p,i)=><motion.button whileHover={{y:-5}} className="card" key={p.title} onClick={()=>setProject(project===i?null:i)}><div className="cardTop"><span>{p.type}</span><b>{p.n}</b></div><h3>{p.title}</h3><p>{p.text}</p><div className="pills">{p.tags.map(t=><span key={t}>{t}</span>)}</div><strong>View case study →</strong></motion.button>)}</div>{project!==null&&<motion.div className="case" initial={{opacity:0,y:10}} animate={{opacity:1,y:0}}><span>TEST ARCHITECTURE</span><h3>{projects[project].title}</h3><p>{projects[project].text}</p><code>{projects[project].flow}</code></motion.div>}</section>
-<section className="section journey"><div className="kicker">04 / JOURNEY</div><div className="titleRow"><h2>Experience & education</h2><p>Technology, business and operations.</p></div>{[['2017','B.Sc. Computer Science','Technical foundation in programming, systems and problem solving.'],['2023','Postgraduate Business Studies','Cape Breton University · Sydney, Nova Scotia'],['IT','Junior IT Analyst · NPower Canada','Windows/Linux, directory services, networking, hardware and application support.'],['NOW','QA Automation & Technology','Automation, APIs, CI/CD, cloud and quality engineering.']].map(x=><div className="timeline" key={x[0]}><b>{x[0]}</b><div><h3>{x[1]}</h3><p>{x[2]}</p></div></div>)}</section>
-{!recruiter&&<section id="lab" className="section lab"><div><div className="kicker">05 / AUTOMATION LAB</div><h2>Don't just read my résumé.<br/><em>Run my tests.</em></h2><p>A portfolio should demonstrate the mindset behind the résumé. Run this simulated regression suite.</p><button className="primary run" onClick={run} disabled={running}><Play size={16}/>{running?' Running...':' Run Test Suite'}</button></div><div className="runner"><div className="runnerTop"><span><Terminal size={15}/> TEST RUNNER</span><b className={results.length===6?'green':''}>{running?'RUNNING':results.length===6?'PASSED':'IDLE'}</b></div><div className="runnerBody">{results.length===0&&!running&&<p className="dim">Ready. Click “Run Test Suite”.</p>}{results.map((r,i)=><motion.p initial={{opacity:0,x:-5}} animate={{opacity:1,x:0}} key={r}><CheckCircle2 size={14}/> {r}<span>{[412,689,533,821,192,304][i]}ms</span></motion.p>)}{results.length===6&&<><hr/><p className="green">6 PASSED · 0 FAILED</p><p className="green">BUILD SUCCESS</p></>}</div><div className="bar"><i style={{width:(results.length/6*100)+'%'}}/></div></div></section>}
-<section id="contact" className="section contact"><div className="kicker">06 / CONTACT</div><h2>Let's build reliable<br/>software together.</h2><p>Interested in QA Automation, Quality Engineering, IT Support and Analyst opportunities.</p><div className="actions center"><a className="primary" href="mailto:Joshuadaniel944@gmail.com"><Mail size={16}/> Email Joshua</a><a className="secondary" href="https://github.com/Joshuanoc" target="_blank" rel="noreferrer"><Code2 size={16}/> GitHub</a></div></section></main><footer><span>&lt;/JoshuaDaniel&gt;</span><p>React · Vite · Framer Motion</p></footer></div>}
+import React,{useState}from'react';
+import{motion}from'framer-motion';
+import{ArrowUpRight,Check,ChevronRight,Mail,Code2,Cloud,TestTube2,Wrench,Database,Network}from'lucide-react';
+
+const projects=[
+{eyebrow:'AUTOMATION FRAMEWORK',title:'E-Commerce QA Automation',text:'A reusable UI automation framework covering end-to-end shopping journeys with Page Object Model, Cucumber BDD, Maven and Jenkins.',chips:['Selenium','Java','Cucumber','Jenkins'],metric:'Reusable test architecture'},
+{eyebrow:'BUSINESS SYSTEM QA',title:'Insurance Policy Management',text:'Functional and regression testing across registration, quotes, policy issuance, premium calculations, claims and settlement workflows.',chips:['Functional QA','Jira','Regression'],metric:'Business-critical workflows'},
+{eyebrow:'FINTECH QA',title:'Crypto Trading Platform',text:'Exploratory and functional testing across authentication, wallets, trading, transaction history and validation scenarios.',chips:['UI Testing','Negative Testing','Defect Tracking'],metric:'Risk-focused test coverage'}
+];
+
+const skillGroups=[
+{icon:TestTube2,title:'Quality Engineering',items:['Selenium WebDriver','TestNG','JUnit','Cucumber','Functional Testing','Regression Testing']},
+{icon:Code2,title:'Programming',items:['Java','Python','JavaScript','HTML','CSS','Shell Script']},
+{icon:Database,title:'API & Data',items:['Postman','Swagger','REST APIs','SQL','Validation','Negative Testing']},
+{icon:Cloud,title:'Cloud & DevOps',items:['AWS','Azure','Git','Jenkins','Maven','CI/CD']},
+{icon:Wrench,title:'IT Support',items:['ServiceNow','Zendesk','Jira','Windows','Linux','macOS']},
+{icon:Network,title:'Networking',items:['TCP/IP','DNS','DHCP','VPN','Subnetting','Troubleshooting']}
+];
+
+function App(){
+const[open,setOpen]=useState(0);
+return <div className="site">
+<header className="nav"><a href="#home" className="logo">JOSHUA DANIEL</a><nav><a href="#about">About</a><a href="#projects">Work</a><a href="#skills">Skills</a><a href="#contact">Contact</a></nav><a className="navCta" href="mailto:Joshuadaniel944@gmail.com">Let's talk <ArrowUpRight size={15}/></a></header>
+
+<main>
+<section id="home" className="hero">
+<div className="heroGlow one"/><div className="heroGlow two"/>
+<motion.div className="heroCopy" initial={{opacity:0,y:28}} animate={{opacity:1,y:0}} transition={{duration:.7}}>
+<p className="tag">QA AUTOMATION · IT SUPPORT · ANALYSIS</p>
+<h1>Building quality<br/>into every <span>experience.</span></h1>
+<p className="heroText">I'm Joshua Daniel, a technology professional focused on software quality, automation, support and reliable user experiences.</p>
+<div className="heroActions"><a className="btn dark" href="#projects">View my work <ChevronRight size={16}/></a><a className="btn light" href="mailto:Joshuadaniel944@gmail.com">Contact me</a></div>
+</motion.div>
+<motion.div className="heroVisual" initial={{opacity:0,scale:.95}} animate={{opacity:1,scale:1}} transition={{delay:.18,duration:.7}}>
+<div className="visualCard mainCard"><div className="miniLabel">CURRENT FOCUS</div><h3>Quality Engineering</h3><p>Automation · APIs · CI/CD · Support</p><div className="statRow"><div><strong>QA</strong><span>Automation</span></div><div><strong>API</strong><span>Testing</span></div><div><strong>IT</strong><span>Support</span></div></div></div>
+<div className="floatCard topCard"><Check size={17}/><span>Reliable systems</span></div>
+<div className="floatCard bottomCard"><span className="dot"/> Open to opportunities</div>
+</motion.div>
+</section>
+
+<section className="strip"><span>Selenium</span><span>Java</span><span>Python</span><span>Postman</span><span>Jenkins</span><span>AWS</span><span>Azure</span><span>Jira</span></section>
+
+<section id="about" className="section about">
+<div><p className="sectionTag">ABOUT ME</p><h2>I combine technical testing with a practical understanding of how systems should work.</h2></div>
+<div className="aboutText"><p>My background spans quality assurance, operational support, business analysis and IT troubleshooting. I enjoy finding problems early, understanding why they happen and helping teams deliver dependable software.</p><p>I work comfortably across testing tools, cloud platforms, support environments and cross-functional teams.</p><div className="facts"><div><strong>5+ yrs</strong><span>Technology & operations</span></div><div><strong>3</strong><span>Hands-on QA projects</span></div><div><strong>2</strong><span>Cloud platforms</span></div></div></div>
+</section>
+
+<section id="projects" className="section work">
+<div className="sectionHead"><div><p className="sectionTag">SELECTED WORK</p><h2>Projects built around real testing problems.</h2></div><p>Focused case studies that show how I think about coverage, risk and quality.</p></div>
+<div className="projectGrid">
+<div className="projectMenu">{projects.map((p,i)=><button key={p.title} className={open===i?'projectTab active':''} onClick={()=>setOpen(i)}><span>0{i+1}</span><div><small>{p.eyebrow}</small><strong>{p.title}</strong></div><ChevronRight size={18}/></button>)}</div>
+<motion.article key={open} className="projectPanel" initial={{opacity:0,y:10}} animate={{opacity:1,y:0}}>
+<div className="projectNumber">0{open+1}</div><p className="sectionTag">{projects[open].eyebrow}</p><h3>{projects[open].title}</h3><p>{projects[open].text}</p><div className="chips">{projects[open].chips.map(x=><span key={x}>{x}</span>)}</div><div className="projectMetric"><Check size={16}/>{projects[open].metric}</div>
+</motion.article>
+</div>
+</section>
+
+<section id="skills" className="section skills">
+<div className="sectionHead"><div><p className="sectionTag">CAPABILITIES</p><h2>Tools I use to test, troubleshoot and deliver.</h2></div></div>
+<div className="skillGrid">{skillGroups.map(({icon:Icon,title,items})=><article className="skillCard" key={title}><div className="iconWrap"><Icon size={19}/></div><h3>{title}</h3><ul>{items.map(i=><li key={i}>{i}</li>)}</ul></article>)}</div>
+</section>
+
+<section className="section journey">
+<div className="sectionHead"><div><p className="sectionTag">EXPERIENCE</p><h2>A foundation across technology, business and operations.</h2></div></div>
+<div className="timeline">
+<div className="lineItem"><span>2017</span><div><h3>B.Sc. Computer Science</h3><p>Built a technical foundation in programming, systems and problem solving.</p></div></div>
+<div className="lineItem"><span>2023</span><div><h3>Postgraduate Business Studies · Cape Breton University</h3><p>Expanded business, analytics and operational thinking.</p></div></div>
+<div className="lineItem"><span>IT</span><div><h3>Junior IT Analyst · NPower Canada</h3><p>Windows, Linux, networking, directory services, user support and troubleshooting.</p></div></div>
+<div className="lineItem"><span>NOW</span><div><h3>QA Automation & Technology</h3><p>Automation, API testing, CI/CD, cloud and quality engineering.</p></div></div>
+</div>
+</section>
+
+<section id="contact" className="contact">
+<div><p className="sectionTag">LET'S CONNECT</p><h2>Looking for someone who cares about quality from the start?</h2><p>I'm open to QA Automation, Quality Engineering, IT Support and Analyst opportunities.</p></div>
+<div className="contactActions"><a className="btn white" href="mailto:Joshuadaniel944@gmail.com"><Mail size={16}/> Email me</a><a className="btn outline" href="https://github.com/Joshuanoc" target="_blank" rel="noreferrer"><Code2 size={16}/> GitHub</a></div>
+</section>
+</main>
+
+<footer><strong>Joshua Daniel</strong><span>QA Automation · IT Support · Technology</span><span>© 2026</span></footer>
+</div>
+}
 export default App;
