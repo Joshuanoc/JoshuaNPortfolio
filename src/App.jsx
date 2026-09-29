@@ -5,7 +5,8 @@ import{ArrowUpRight,Check,ChevronRight,Mail,Code2,Cloud,TestTube2,Wrench,Databas
 const projects=[
 {eyebrow:'AUTOMATION FRAMEWORK',title:'E-Commerce QA Automation',text:'A reusable UI automation framework covering end-to-end shopping journeys with Page Object Model, Cucumber BDD, Maven and Jenkins.',chips:['Selenium','Java','Cucumber','Jenkins'],metric:'Reusable test architecture'},
 {eyebrow:'BUSINESS SYSTEM QA',title:'Insurance Policy Management',text:'Functional and regression testing across registration, quotes, policy issuance, premium calculations, claims and settlement workflows.',chips:['Functional QA','Jira','Regression'],metric:'Business-critical workflows'},
-{eyebrow:'FINTECH QA',title:'Crypto Trading Platform',text:'Exploratory and functional testing across authentication, wallets, trading, transaction history and validation scenarios.',chips:['UI Testing','Negative Testing','Defect Tracking'],metric:'Risk-focused test coverage'}
+{eyebrow:'FINTECH QA',title:'Crypto Trading Platform',text:'Exploratory and functional testing across authentication, wallets, trading, transaction history and validation scenarios.',chips:['UI Testing','Negative Testing','Defect Tracking'],metric:'Risk-focused test coverage'},
+{eyebrow:'IT SUPPORT INTELLIGENCE',title:'SupportIQ — Root Cause Assistant',text:'Interactive Tier 1/Tier 2 troubleshooting with decision trees, hypothesis scoring, RCA confidence, escalation logic, incident history and analytics.',chips:['React','RCA','IT Support','Decision Engine'],metric:'Evidence-driven troubleshooting',link:'./supportiq/'}
 ];
 
 const skillGroups=[
@@ -50,7 +51,7 @@ return <div className="site">
 <div className="projectGrid">
 <div className="projectMenu">{projects.map((p,i)=><button key={p.title} className={open===i?'projectTab active':''} onClick={()=>setOpen(i)} aria-pressed={open===i}><span>0{i+1}</span><div><small>{p.eyebrow}</small><strong>{p.title}</strong></div><ChevronRight size={18}/></button>)}</div>
 <motion.article key={open} className="projectPanel" initial={reduceMotion?false:{opacity:0,y:10}} animate={{opacity:1,y:0}} transition={{duration:reduceMotion?0:.25}}>
-<div className="projectNumber">0{open+1}</div><p className="sectionTag">{projects[open].eyebrow}</p><h3>{projects[open].title}</h3><p>{projects[open].text}</p><div className="chips">{projects[open].chips.map(x=><span key={x}>{x}</span>)}</div><div className="projectMetric"><Check size={16}/>{projects[open].metric}</div>
+<div className="projectNumber">0{open+1}</div><p className="sectionTag">{projects[open].eyebrow}</p><h3>{projects[open].title}</h3><p>{projects[open].text}</p><div className="chips">{projects[open].chips.map(x=><span key={x}>{x}</span>)}</div><div className="projectMetric"><Check size={16}/>{projects[open].metric}</div>{projects[open].link&&<a className="projectLink" href={projects[open].link}>Launch live demo <ArrowUpRight size={15}/></a>}
 </motion.article>
 </div>
 </section>
