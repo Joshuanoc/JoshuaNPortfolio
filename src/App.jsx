@@ -1,8 +1,9 @@
 import React,{useState}from'react';
 import{motion,useReducedMotion}from'framer-motion';
-import{ArrowUpRight,Check,ChevronRight,Mail,Code2,Cloud,TestTube2,Wrench,Database,Network,Menu,X}from'lucide-react';
+import{ArrowUpRight,Check,ChevronRight,Mail,Code2,Cloud,TestTube2,Wrench,Database,Network,Menu,X,ExternalLink}from'lucide-react';
 
 const projects=[
+{eyebrow:'IT SUPPORT PRODUCT',title:'SupportQ',text:'An interactive IT troubleshooting application that guides users from symptom intake through triage, diagnosis, corrective action, verification and escalation while preserving a clear incident history.',chips:['React','Vite','Diagnostic Logic','GitHub Actions'],metric:'Guided troubleshooting from issue to resolution',liveUrl:'https://joshuanoc.github.io/SupportQ/',codeUrl:'https://github.com/Joshuanoc/SupportQ'},
 {eyebrow:'AUTOMATION FRAMEWORK',title:'E-Commerce QA Automation',text:'A reusable UI automation framework covering end-to-end shopping journeys with Page Object Model, Cucumber BDD, Maven and Jenkins.',chips:['Selenium','Java','Cucumber','Jenkins'],metric:'Reusable test architecture'},
 {eyebrow:'BUSINESS SYSTEM QA',title:'Insurance Policy Management',text:'Functional and regression testing across registration, quotes, policy issuance, premium calculations, claims and settlement workflows.',chips:['Functional QA','Jira','Regression'],metric:'Business-critical workflows'},
 {eyebrow:'FINTECH QA',title:'Crypto Trading Platform',text:'Exploratory and functional testing across authentication, wallets, trading, transaction history and validation scenarios.',chips:['UI Testing','Negative Testing','Defect Tracking'],metric:'Risk-focused test coverage'}
@@ -42,15 +43,15 @@ return <div className="site">
 
 <section id="about" className="section about">
 <div><p className="sectionTag">ABOUT ME</p><h2>I combine technical testing with a practical understanding of how systems should work.</h2></div>
-<div className="aboutText"><p>My background spans quality assurance, operational support, business analysis and IT troubleshooting. I enjoy finding problems early, understanding why they happen and helping teams deliver dependable software.</p><p>I work comfortably across testing tools, cloud platforms, support environments and cross-functional teams.</p><div className="facts"><div><strong>5+ yrs</strong><span>Technology & operations</span></div><div><strong>3</strong><span>Hands-on QA projects</span></div><div><strong>2</strong><span>Cloud platforms</span></div></div></div>
+<div className="aboutText"><p>My background spans quality assurance, operational support, business analysis and IT troubleshooting. I enjoy finding problems early, understanding why they happen and helping teams deliver dependable software.</p><p>I work comfortably across testing tools, cloud platforms, support environments and cross-functional teams.</p><div className="facts"><div><strong>5+ yrs</strong><span>Technology & operations</span></div><div><strong>4</strong><span>Hands-on technology projects</span></div><div><strong>2</strong><span>Cloud platforms</span></div></div></div>
 </section>
 
 <section id="projects" className="section work">
-<div className="sectionHead"><div><p className="sectionTag">SELECTED WORK</p><h2>Projects built around real testing problems.</h2></div><p>Focused case studies that show how I think about coverage, risk and quality.</p></div>
+<div className="sectionHead"><div><p className="sectionTag">SELECTED WORK</p><h2>Projects built around real testing and support problems.</h2></div><p>Focused case studies that show how I think about coverage, troubleshooting, risk and quality.</p></div>
 <div className="projectGrid">
-<div className="projectMenu">{projects.map((p,i)=><button key={p.title} className={open===i?'projectTab active':''} onClick={()=>setOpen(i)} aria-pressed={open===i}><span>0{i+1}</span><div><small>{p.eyebrow}</small><strong>{p.title}</strong></div><ChevronRight size={18}/></button>)}</div>
+<div className="projectMenu">{projects.map((p,i)=><button key={p.title} className={open===i?'projectTab active':'projectTab'} onClick={()=>setOpen(i)} aria-pressed={open===i}><span>0{i+1}</span><div><small>{p.eyebrow}</small><strong>{p.title}</strong></div><ChevronRight size={18}/></button>)}</div>
 <motion.article key={open} className="projectPanel" initial={reduceMotion?false:{opacity:0,y:10}} animate={{opacity:1,y:0}} transition={{duration:reduceMotion?0:.25}}>
-<div className="projectNumber">0{open+1}</div><p className="sectionTag">{projects[open].eyebrow}</p><h3>{projects[open].title}</h3><p>{projects[open].text}</p><div className="chips">{projects[open].chips.map(x=><span key={x}>{x}</span>)}</div><div className="projectMetric"><Check size={16}/>{projects[open].metric}</div>
+<div className="projectNumber">0{open+1}</div><p className="sectionTag">{projects[open].eyebrow}</p><h3>{projects[open].title}</h3><p>{projects[open].text}</p><div className="chips">{projects[open].chips.map(x=><span key={x}>{x}</span>)}</div><div className="projectMetric"><Check size={16}/>{projects[open].metric}</div>{projects[open].liveUrl&&<div className="heroActions"><a className="btn dark" href={projects[open].liveUrl} target="_blank" rel="noreferrer">Live project <ExternalLink size={15}/></a><a className="btn light" href={projects[open].codeUrl} target="_blank" rel="noreferrer">View code <Code2 size={15}/></a></div>}
 </motion.article>
 </div>
 </section>
