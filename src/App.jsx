@@ -3,7 +3,7 @@ import{motion,useReducedMotion}from'framer-motion';
 import{ArrowUpRight,Check,ChevronRight,Mail,Code2,Cloud,TestTube2,Wrench,Database,Network,Menu,X,ExternalLink}from'lucide-react';
 
 const projects=[
-{eyebrow:'IT SUPPORT PRODUCT',title:'SupportQ',text:'An interactive IT troubleshooting application that guides users from symptom intake through triage, diagnosis, corrective action, verification and escalation. The solution is organized with modular design principles that emphasize encapsulation, abstraction and clear separation of responsibilities.',chips:['Encapsulation','Abstraction','Modular Design','Diagnostic Workflow'],metric:'Guided troubleshooting from issue to resolution',liveUrl:'https://joshuanoc.github.io/SupportQ/'},
+{eyebrow:'IT SUPPORT PRODUCT',title:'SupportQ',text:'An interactive IT troubleshooting application that guides users from issue intake through triage, diagnosis, corrective action, verification and escalation in a clean support-center experience.',chips:[],metric:'Guided troubleshooting from issue to resolution',liveUrl:'https://joshuanoc.github.io/SupportQ/',preview:true},
 {eyebrow:'AUTOMATION FRAMEWORK',title:'E-Commerce QA Automation',text:'A reusable UI automation framework covering end-to-end shopping journeys with Page Object Model, Cucumber BDD, Maven and Jenkins.',chips:['Selenium','Java','Cucumber','Jenkins'],metric:'Reusable test architecture'},
 {eyebrow:'BUSINESS SYSTEM QA',title:'Insurance Policy Management',text:'Functional and regression testing across registration, quotes, policy issuance, premium calculations, claims and settlement workflows.',chips:['Functional QA','Jira','Regression'],metric:'Business-critical workflows'},
 {eyebrow:'FINTECH QA',title:'Crypto Trading Platform',text:'Exploratory and functional testing across authentication, wallets, trading, transaction history and validation scenarios.',chips:['UI Testing','Negative Testing','Defect Tracking'],metric:'Risk-focused test coverage'}
@@ -50,8 +50,11 @@ return <div className="site">
 <div className="sectionHead"><div><p className="sectionTag">SELECTED WORK</p><h2>Projects built around real testing and support problems.</h2></div><p>Focused case studies that show how I think about coverage, troubleshooting, risk and quality.</p></div>
 <div className="projectGrid">
 <div className="projectMenu">{projects.map((p,i)=><button key={p.title} className={open===i?'projectTab active':'projectTab'} onClick={()=>setOpen(i)} aria-pressed={open===i}><span>0{i+1}</span><div><small>{p.eyebrow}</small><strong>{p.title}</strong></div><ChevronRight size={18}/></button>)}</div>
-<motion.article key={open} className="projectPanel" initial={reduceMotion?false:{opacity:0,y:10}} animate={{opacity:1,y:0}} transition={{duration:reduceMotion?0:.25}}>
-<div className="projectNumber">0{open+1}</div><p className="sectionTag">{projects[open].eyebrow}</p><h3>{projects[open].title}</h3><p>{projects[open].text}</p><div className="chips">{projects[open].chips.map(x=><span key={x}>{x}</span>)}</div><div className="projectMetric"><Check size={16}/>{projects[open].metric}</div>{projects[open].liveUrl&&<div className="heroActions"><a className="btn dark" href={projects[open].liveUrl} target="_blank" rel="noreferrer">Live project <ExternalLink size={15}/></a></div>}
+<motion.article key={open} className={projects[open].preview?'projectPanel projectPanelPreview':'projectPanel'} initial={reduceMotion?false:{opacity:0,y:10}} animate={{opacity:1,y:0}} transition={{duration:reduceMotion?0:.25}}>
+{projects[open].preview?<>
+<div className="projectPreviewFrame"><iframe title="SupportQ live preview" src={projects[open].liveUrl}/><div className="projectPreviewOverlay"><div><p className="sectionTag">{projects[open].eyebrow}</p><h3>{projects[open].title}</h3><p>{projects[open].text}</p><div className="projectMetric"><Check size={16}/>{projects[open].metric}</div><a className="btn dark" href={projects[open].liveUrl} target="_blank" rel="noreferrer">Open live project <ExternalLink size={15}/></a></div></div></div>
+</>:<>
+<div className="projectNumber">0{open+1}</div><p className="sectionTag">{projects[open].eyebrow}</p><h3>{projects[open].title}</h3><p>{projects[open].text}</p><div className="chips">{projects[open].chips.map(x=><span key={x}>{x}</span>)}</div><div className="projectMetric"><Check size={16}/>{projects[open].metric}</div></>}
 </motion.article>
 </div>
 </section>
